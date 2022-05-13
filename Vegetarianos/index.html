@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Vegetariano</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="margin: 30px 18% 0 18%">
+  <div class="card mb-3" style="width: 100%;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="img/vegetais.png" class="img-fluid rounded-start" alt="..." style="height: 100%;">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center;">🥕Vitaminas para pessoas vegetarianas</h5>
+          <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label"><b>Nome</b></label>
+            <input type="text" class="form-control" id="nome" placeholder="Seu nome">
+          </div>
+          <label for="formGroupExampleInput" class="form-label"><b>Tipo de dieta</b></label>
+          <select class="form-select" aria-label="Default select example" id="tipo">
+            <option selected >Selecionar tipo</option>
+            <option value=1>Ovolactovegetarianos</option>
+            <option value=2>Lactovegetarianos</option>
+            <option value=3>Ovovegetarianianos</option>
+            <option value=4>Veganos</option>
+          </select>
+          <button type="button" class="btn btn-primary" style="margin: 20px 0 20px 0" onclick="vegetarianos()">Resultado</button>
+            <div class= "form-control novo"   placeholder="Default input" aria-label="default input example" id='resultado' style="min-height: 38px;"></div>
+            <div class="form-control novo"    placeholder="Default input" aria-label="default input example" id='resultado2'style="min-height: 38px;"></div>
+            <div class="form-control novo"    placeholder="Default input" aria-label="default input example" id='resultado3'style="min-height: 38px;"></div>
+    
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="javascript.js"></script>
+   
+</body>
+</html>

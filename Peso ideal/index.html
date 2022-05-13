@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peso Ideal</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body style="margin-left:18%; margin-right:18%">
+    <div class="card mb-3" style="width: 100%;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="img/figura.jpg" class="img-fluid rounded-start" style="height: 100%; width: 100%;" alt="perda de peso2">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">App peso ideal</h5>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" placeholder="Seu nome">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Altura</label>
+                <input type="number" class="form-control" id="altura" placeholder="Altura em metro">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Peso</label>
+                <input type="number" class="form-control" id="peso" placeholder="Peso em quilograma">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Objetivo</label>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" style="height: 37px;" id="objetivo">
+                    <option selected>Escolha o objetivo</option>
+                    <option value="1">Engordar e manter à saúde</option>
+                    <option value="2">Emagrecer e melhorar à saúde</option>
+                    <option value="3">Manutenção de uma vida saudável</option>
+                    <option value="4">Peso saudável</option>
+                    <option value="5">Estética</option>
+                  </select>
+            </div>
+            <button class="btn btn-primary" onclick="peso()">Resultado</button>
+            <div><br></div>
+            <div class="form-control" id="resultado" style="min-height: 37px;"></div>
+            <div class="form-control" id="resultado2" style="min-height: 37px;"></div>
+            <div class="form-control" id="resultado3" style="min-height: 37px;"></div>
+            <div class="form-control" id="resultado4" style="min-height: 37px;"></div>
+            
+          </div>
+        </div>
+      </div>
+      <script src='javascript.js'></script>
+</body>
+</html>

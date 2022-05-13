@@ -1,0 +1,105 @@
+.personal-carousel{
+    height: 730px;
+    background-color: black;
+}
+
+.personal-carousel img{
+    opacity: 0.6;
+}
+
+
+.parallax__background{
+    background-image: url(./img/trilha.jpg);
+    height: 370px;
+    opacity: 0.7; 
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color:white;
+    font-size: 25px;
+}
+
+
+.parallax2__background{
+    background-image: url(./img/treino-praia.jpg);
+    height: 370px;
+    opacity: 0.7;    
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color:white;
+    font-size: 25px;
+    background-position: 0 -40px;
+}
+
+.parallax{
+    background-color: black;
+    height: 370px;
+    width: 100%;
+}
+
+.parallax2{
+    background-color: black;
+    height: 370px;
+    width: 100%;
+}
+
+
+.plans {
+    margin: 30px 10% 0 10%;
+}
+
+.form{
+    margin: 40px 10% 30px 10%;
+}
+
+
+.button{
+    position: relative;
+    left: -25px;
+    bottom: -15px;
+}
+
+.botao{
+    color: white; 
+    background-color: #d52856; 
+    border-color: #d52856;
+}
+
+.botao:hover{
+    background-color: #b52249; 
+    border-color: #b52249;
+}
+
+.treinos:hover{
+    transform:scale(1.42);
+    transition: 2s;
+    margin-bottom: 35px;
+}
+
+.personal-footer{
+    margin-left: 9%;
+    margin-right: 9%;
+
+}
+
+@media(max-width: 480px){
+    .parallax{
+        height: 740px;
+    }
+
+    .parallax__background{
+        height: 740px;
+    }
+
+    .parallax2{
+        height: 500px;
+
+    }
+
+    .parallax2__background{
+        height: 500px;
+    }
+}
