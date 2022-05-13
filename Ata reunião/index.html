@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atas da reunião</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body >
+
+  <div id="primeiro">
+    <div class="div form-signin text-center" v-if="!app">
+      <form>
+        <img src="img/logo.png" height="55">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    
+        <input class="form-control" type="text" placeholder="sawoconsultoria@sawo.com" style="height: 60px;" aria-label="default input example" v-model="email">
+        <input class="form-control" type="password" placeholder="Teste123" style="height: 60px;" aria-label="default input example" v-model="senha">
+    
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" @click="signIn">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+      </form>
+      
+    </div>
+    <div v-if="app" >
+      <div style="background-color: #E5E7E9 ;">
+  <main >
+      <img src="img/logo.png" style="width: 200px;" alt="" />
+      <h1 style="font-size: 30px; margin-bottom: 60px;">Atas da reunião</h1>
+      <h2 style="font-size: 20px;">Abrir sessão</h2>
+      <p style="font-size: 18px;" v-if="!reuniao"><input class="form-control" type="text" placeholder="Coloque aqui o nome de quem organizou ou a empresa e aperte enter" v-model="nome" @keyup.enter="reuniao2" aria-label="default input example"></p>
+      <p style="font-size: 18px; margin-bottom: 30px; cursor: pointer;" v-if="reuniao" @click="apagarNome" :title="title">Uma reunião organizada por {{nome}}</p>
+
+    <h2 style="font-size: 20px;">Participantes</h2>
+    <p style="font-size: 18px;" v-if="!participantes"><input class="form-control" type="text" placeholder="Adicione os participantes e aperte enter clique no botão quando acabar" v-model="participante" @keyup.enter="participantes2" aria-label="default input example"><button class="btn btn-primary" type="submit" @click="acabou">Todos</button></p>
+    <p v-for="(participante, index) in listaParticipantes" style="cursor: pointer; font-size: 18px; margin: 1px auto;" v-if="participantes" @click="apagarParticipantes(index)" :title="title">{{participante.description}}</p>
+    <p style="font-size: 5px; margin-bottom: 0px auto; opacity: 0;">Nada</p>
+
+    <h2 style="font-size: 20px;">Membros que não participaram</h2>
+    <p style="font-size: 18px;" v-if="!nparticipantes"><input class="form-control" type="text" placeholder="Adicione os participantes e aperte enter clique no botão quando acabar" v-model="nparticipante" @keyup.enter="nparticipantes2" aria-label="default input example"><button class="btn btn-primary" type="submit" @click="nacabou">Todos</button></p>
+    <p v-for="(nparticipante, index) in listaNParticipantes" style="cursor: pointer; font-size: 18px; margin: 1px auto;" v-if="nparticipantes" @click="apagarNParticipantes(index)" :title="title">{{nparticipante.description}}</p>
+    <p style="font-size: 5px; margin-bottom: 0px auto; opacity: 0;">Nada</p>
+
+
+
+
+    <h2 style="font-size: 20px;">Assuntos</h2>
+    <div v-if="editMode">
+        <form @submit="gravar">
+            <input class="form-control" type="text" v-model="description" placeholder="Coloque aqui o assunto aqui e clique no botão">
+            <button type="submit" class="button btn btn-primary">Gravar</button><button style="margin-left: 1em;" type="button" class="button btn btn-primary" @click="lista">Ver Lista</button>
+        </form>
+    </div>
+
+    <div v-if="!editMode">
+      <p :class="todoList" v-for="(item, index) in listaTodo" style="font-size:18px;" >
+        <input style="margin-right: 10px; " class="form-check-input" type="checkbox" v-model="item.feito">
+        <span @click="apagar(index)" :title="title">{{item.description}}
+          
+        </span>
+        
+
+      </p>
+      <button type="button" class="button btn btn-primary" @click="voltar">Voltar</button>
+    </div>
+    <p style="font-size: 5px; margin-bottom: 0px auto; opacity: 0;">Nada</p>
+
+    <h2 style="font-size: 20px;">Assuntos pendentes</h2>
+
+    <div v-if="editMode2">
+        <form @submit="gravar2">
+            <input class="form-control" type="text" v-model="description2" placeholder="Coloque aqui o assunto pendente aqui e clique no botão">
+            <button type="submit" class="button btn btn-primary" >Gravar</button><button style="margin-left: 1em;" type="button" class="button btn btn-primary" @click="lista2">Ver Lista</button>
+        </form>
+    </div>
+
+
+    <div v-if="!editMode2">
+      <p :class="todoList" v-for="(item2, index) in listaTodo2" style="font-size:18px;" >
+        <input style="margin-right: 10px; " class="form-check-input" type="checkbox" v-model="item2.feito2">
+        <span @click="apagar2(index)" :title="title">{{item2.description}}
+          
+        </span>
+        
+
+      </p>
+      <button type="button" class="button btn btn-primary" @click="voltar2">Voltar</button>
+    </div>
+    <p style="font-size: 5px; margin-bottom: 0px auto; opacity: 0;">Nada</p>
+
+    <h2 style="font-size: 20px;">Tempo de reunião</h2>
+    <p style="font-size: 18px; " v-if="!tempo2"><input class="form-control" type="text" placeholder="Coloque o tempo de reunião em minutos" v-model="tempo" @keyup.enter="tempo3(tempo)" aria-label="default input example"></p>
+    <p style="font-size: 18px; margin-bottom: 0; cursor: pointer;" v-if="tempo2 && time>=0 && segundos==60" @click="apagarNome">Faltam</p><span v-if="tempo2 && time>=0 && segundos==60" style=" width: 50px; height: 50px; font-size: 40px;">{{time+1}}:00</span>
+    <p style="font-size: 18px; margin-bottom: 0; cursor: pointer;" v-if="tempo2 && time>=0 && segundos>=10 &&segundos!=60" @click="apagarNome">Faltam</p><span v-show="tempo2 && time>=0 && segundos>=10 && segundos!=60" style=" width: 50px; height: 50px; font-size: 40px;">{{time}}:{{segundos}} </span>
+    <p style="font-size: 18px; margin-bottom: 0; cursor: pointer;" v-if="tempo2 && time>=0 && segundos<10" @click="apagarNome">Faltam</p><span v-if="tempo2 && time>=0 && segundos<10" style=" width: 50px; height: 50px; font-size: 40px;">{{time}}:0{{segundos}} </span>
+    <p style="font-size: 18px; margin-bottom: 0; cursor: pointer;" v-if="time<0" @click="apagarNome">Faltam</p><span v-if="time<0" style=" width: 50px; height: 50px; font-size: 40px;">0:00</span>
+    <div class="loader" v-if="time>=0 && time!=null"></div>
+
+  </div>
+    
+
+
+  </main>
+</div>
+
+  <script src="https://unpkg.com/vue@3.0.4"></script>
+
+  <script>
+    const app = {
+      data() {
+        return {
+          email: '',
+          senha: '',
+          app: false,
+          description: "",
+          listaTodo: [],
+          editMode: true,
+          todoList: "todoList",
+          feito: false,
+          description2: "",
+          listaTodo2: [],
+          editMode2: true,
+          todoList2: "todoList",
+          feito2: false,
+          reuniao: false,
+          nome:"",
+          listaParticipantes:[],
+          participante: "",
+          participantes: false,
+          listaNParticipantes:[],
+          nparticipante: "",
+          nparticipantes: false,
+          title: "Clique aqui para apagar!",
+          tempo: null,
+          tempo2: false,
+          segundos: 59,
+          time:null,
+          tempoCerto: "",
+
+        }
+      },
+      methods: {
+        signIn(){
+            if(this.email == 'sawoconsultoria@sawo.com' && this.senha == 'Teste123'){
+           this.app = true;
+            }else{
+              alert('Dados incorretos!');
+            }
+          },
+        gravar(e) {
+            //essa função serve para não ocorrer o recarregamento da página
+            e.preventDefault();
+        this.listaTodo.push({ description: this.description, feito: this.feito});
+
+          this.editMode = false;
+          //localStorage faz com que grave no local a primeira parte é a chave de acesso que pode ter qualquer nome e a segunda é o nome da variável que tem as strings
+          localStorage.setItem("listaTodo", JSON.stringify(this.listaTodo));
+
+
+        },
+        apagar(index) {
+          this.listaTodo.splice(index, 1);
+          localStorage.setItem("listaTodo", JSON.stringify(this.listaTodo));
+        },
+        voltar() {
+          this.editMode = true;
+          this.description = "";
+          localStorage.setItem("listaTodo", JSON.stringify(this.listaTodo));
+        },
+        gravar2(e) {
+            e.preventDefault();
+        this.listaTodo2.push({ description: this.description2, feito: this.feito2});
+
+          this.editMode2 = false;
+          //localStorage faz com que grave no local a primeira parte é a chave de acesso que pode ter qualquer nome e a segunda é o nome da variável que tem as strings
+          localStorage.setItem("listaTodo2", JSON.stringify(this.listaTodo2));
+
+
+        },
+        apagar2(index) {
+          this.listaTodo2.splice(index, 1);
+          localStorage.setItem("listaTodo2", JSON.stringify(this.listaTodo2));
+
+
+        },
+        voltar2() {
+          this.editMode2 = true;
+          this.description2 = "";
+          localStorage.setItem("listaTodo2", JSON.stringify(this.listaTodo2));
+        },
+
+        lista(){
+          this.editMode=false
+        },
+        lista2(){
+          this.editMode2=false
+        },
+        reuniao2(){
+          this.reuniao=true;
+          localStorage.setItem("nome", this.nome);
+        },
+        participantes2(){
+          this.listaParticipantes.push({description: this.participante});
+          this.participante="";
+          localStorage.setItem("listaParticipantes", JSON.stringify(this.listaParticipantes));
+        },
+        acabou(){
+          this.participantes=true;
+        },
+
+        nparticipantes2(){
+          this.listaNParticipantes.push({description: this.nparticipante});
+          this.nparticipante="";
+          localStorage.setItem("listaNParticipantes", JSON.stringify(this.listaNParticipantes));
+        },
+        nacabou(){
+          this.nparticipantes=true;
+        },
+
+        apagarParticipantes(index) {
+          this.listaParticipantes.splice(index, 1);
+          localStorage.setItem("listaParticipantes", JSON.stringify(this.listaParticipantes));
+          this.participantes=false;
+        },
+        apagarNParticipantes(index) {
+          this.listaNParticipantes.splice(index, 1);
+          localStorage.setItem("listaNParticipantes", JSON.stringify(this.listaNParticipantes));
+          this.nparticipantes=false;
+        },
+        apagarNome(){
+          this.nome="";
+          localStorage.setItem("nome", this.nome);
+          this.reuniao=false;
+        },
+
+        tempo3(tempo){
+          this.tempo2=true;
+          this.time=this.tempo-1;
+
+
+          let reuniao = setInterval(()=>{
+
+            this.segundos--;
+            if(this.segundos==0){
+              if(this.time==-1){
+                clearInterval(reuniao);
+              }else{
+              this.segundos=60;
+              this.time--
+              }
+              }
+            },1000);
+
+        },
+        formatNumber(n){
+                return String(n).padStart(2,"0");
+
+            }
+
+          
+
+
+      },
+
+      created() {
+        const listaTodo = localStorage.getItem("listaTodo");
+        const listaTodo2 = localStorage.getItem("listaTodo2");
+        const listaParticipantes = localStorage.getItem("listaParticipantes");
+        const listaNParticipantes = localStorage.getItem("listaNParticipantes");
+        const nome = localStorage.getItem("nome");
+
+
+        if (listaTodo) {
+          this.listaTodo = JSON.parse(listaTodo);
+        }else{
+          this.listaTodo=[];
+        }
+
+
+        if (listaTodo2) {
+          this.listaTodo2 = JSON.parse(listaTodo2);
+        }else{
+          this.listaTodo2=[];
+        }
+
+        if (listaParticipantes) {
+          this.listaParticipantes = JSON.parse(listaParticipantes);
+        }else{
+          this.listaParticipantes=[];
+        }
+
+        if (listaNParticipantes) {
+          this.listaNParticipantes = JSON.parse(listaNParticipantes);
+        }else{
+          this.listaNParticipantes=[];
+        }
+
+        if (nome) {
+          this.nome = nome;
+        }else{
+          this.nome="";
+        }
+
+
+      }
+
+
+    }
+
+    Vue.createApp(app).mount("#primeiro");
+  </script>
+</body>
+
+</html>

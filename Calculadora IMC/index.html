@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>🍎Calculadora - IMC</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<style>
+	.margem{
+	margin-top: 70px;
+	margin-left: 350px;
+	margin-right: 350px;
+	}
+	.letra{
+	font-size: 17px;
+	font-family:arial;
+	}
+
+	.novo{
+	height: 38px;
+	}
+
+	</style>
+</head>
+<body>
+
+<div class="margem">
+<h1 class="text-center">🍎Calculadora IMC</h1>
+<div class="mb-3 letra">
+  <label for="formGroupExampleInput" class="form-label"><b>Nome</b></label>
+  <input type="text" class="form-control" id="nome" placeholder="Seu nome">
+</div>
+<div class="mb-3 letra">
+  <label for="formGroupExampleInput" class="form-label"><b>Altura</b></label>
+  <input type="number" class="form-control" id="altura" placeholder="Altura em metro">
+</div>
+<div class="mb-3 letra">
+  <label for="formGroupExampleInput" class="form-label"><b>Peso</b></label>
+  <input type="number" class="form-control" id="peso" placeholder="Peso em kg (no caso de gestantes peso pré-gestação)">
+</div>
+  <label for="formGroupExampleInput" class="form-label"><b>Tipo de calculadora</b></label>
+<select class="form-select" aria-label="Default select example" id="tipo">
+  <option selected >Selecionar tipo de calculadora</option>
+  <option value=1>Adulto</option>
+  <option value=2>Idoso</option>
+  <option value=3>Gestante</option>
+</select>
+<p>
+</p>
+<button type="submit" class="btn btn-primary btn-lg" onclick="imc()">Calcular</button>
+<p></p>
+	<div id='figura'></div>
+
+<div class= "form-control novo"   placeholder="Default input" aria-label="default input example" id='resultado'></div>
+<div class="form-control novo"    placeholder="Default input" aria-label="default input example" id='resultado2'></div>
+<div class="form-control novo"    placeholder="Default input" aria-label="default input example" id='resultado3'></div>
+<div class="form-control novo"    placeholder="Default input" aria-label="default input example" id='total'></div>
+<div class="form-control novo"  placeholder="Default input" aria-label="default input example" id='resultado4'></div>
+
+</div>
+</div>
+      
+ 
+				</div>
+			</div>
+		</div>
+	</section>
+<script src = "imc.js">
+
+
+</script>
+
+</body>
+</html>

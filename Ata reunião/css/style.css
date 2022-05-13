@@ -1,0 +1,64 @@
+#primeiro{
+    width: 800px;
+    min-height: 1100px;
+    margin:50px auto;
+    font-size: 25px;
+}
+
+
+.button{
+    margin-top: 1rem;
+}
+
+.todoList{
+
+    display: flex;
+    justify-content: flex-start;
+}
+
+.pointer{
+    cursor: ponter;
+}
+
+main{
+    margin: 50px auto;
+    width: 800px;
+    
+    background: white;
+    padding: 84px 65px;
+    border: 1px solid #A6ACAF;
+}
+
+span{
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+span:hover{
+    box-shadow: 10px 5px 5px black;
+}
+
+h2{
+    font-size: 14px;
+    color: #0061d4;
+}
+
+.loader {
+    border: 12px solid #f3f3f3; /* Light grey */
+    border-top: 12px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    animation: spin 2s linear infinite;
+
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .div{
+    margin: 110px auto;
+    width: 280px;
+  }
