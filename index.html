@@ -12,7 +12,7 @@
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 ">
           <a href="index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-            <img src="img/logo leandro.png" alt="" style="max-height: 60px;">
+            <img src="img/logo leandro.png" alt="" class="container__img">
             
           </a>
     
@@ -29,10 +29,10 @@
         <div class="parallax__background ">
             <div class="container">
 
-              <div class="carousel-caption text-start">
+              <div class="carousel-caption text-start carousel__personalizado">
                 <h1>LEANDRO OKAMOTO</h1>
                 <p style="margin-top: -15px;">Front-end developer</p>
-                <p style="font-size: 20px;">Desenvolvedor front-end focado em sites responsivos em Html, CSS e Javascript, Wordpress e
+                <p >Desenvolvedor front-end focado em sites responsivos em Html, CSS e Javascript, Wordpress e
                   Aplicações Web (Web Apps) em Vanilla.js, Vue.js e Angular.</p>
                 <p><a class="btn btn-lg btn-danger botao"  href="#saibamais">Saiba Mais</a></p>
               </div>
@@ -42,28 +42,28 @@
       </section>
 
         <section class="container marketing">
-          <div class="container justify-content-center " style="text-align: center; margin: 60px 0 60px 0;">
+          <div class="container justify-content-center container-marketing__servicos">
                 <div class="row">
                     <div class="col-lg-4 ">
                    <a href="websites.html"> <img src="img/website.jpg" class="bd-placeholder-img rounded-circle treinos" width="140" height="140"  ></a>
             
                     <h2>Websites</h2>
                     <p>Criação de websites responsivos com o Wordpress ou Html. </p>
-                    <p><a  href="websites.html" style="text-decoration: none; color: black;">Saiba Mais &raquo;</a></p>
+                    <p><a  class="container-marketing__servicos__a" href="websites.html">Saiba Mais &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->
                     <div class="col-lg-4">
                       <a href="websites.html"><img src="img/landing.png" class="bd-placeholder-img rounded-circle treinos" width="140" height="140"></a>
             
                     <h2>Landing Pages</h2>
                     <p>Criação de landing pages responsivos e dinâmicos.</p>
-                    <p><a href="websites.html" style="text-decoration: none; color: black;">Saiba Mais &raquo;</a></p>
+                    <p><a href="websites.html" class="container-marketing__servicos__a">Saiba Mais &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->
                     <div class="col-lg-4">
                       <a href="webApps.html"><img src="img/code.png" class="bd-placeholder-img rounded-circle treinos" width="140" height="140" ></a>
             
                     <h2>Web Apps</h2>
                     <p>Aplicações web baseados em Html, Css, Javascript, Vue.js, Angular e Svelte </p>
-                    <p><a href="webApps.html" style="text-decoration: none; color: black;">Saiba Mais &raquo;</a></p>
+                    <p><a href="webApps.html" class="container-marketing__servicos__a">Saiba Mais &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->
                 </div><!-- /.row -->
             </div>
@@ -71,76 +71,77 @@
 
 
         <template id="meu-template">
+          <a id="curriculo"></a>
         <section >
             <div class="primeiro"  style="background-color: white;">
-              <div style="height: 8px; width: 620px; background: #0061d4; margin-bottom: 25px;"></div>
+              <div class="meu-template__decoracao"></div>
               
-              <h1 style="font-size: 40px; margin-bottom: 10px; font-family: 'Times New Roman', Times, serif;">Leandro Okamoto</h1>
-              <h2 style="font-size: 20px;">Desenvolvedor Front-end</h2>
-              <p style="font-size: 15px; color: #474a51">Campinas-SP</p>
+              <h1>Leandro Okamoto</h1>
+              <h2 class="meu-template__subtitulo">Desenvolvedor Front-end</h2>
+              <p class="meu-template__primeiro">Campinas-SP</p>
               
-              <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >developer.nutri@gmail.com</p>
+              <p class="meu-template__terceiro" >developer.nutri@gmail.com</p>
               
           
-              <h2 style="font-size: 20px;">COMPETÊNCIAS</h2>
-              <p style="font-size: 15px; color: #474a51">Desenvolvimento de projetos para implantação de sites em Wordpress e HTML </p>
-              <p style="font-size: 15px; color: #474a51; margin-top:-15px;" >com desenvolvimento de aplicações web (web apps), e-commerce, email </p>
-              <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >marketing e mídia paga. Certificação em Javascript, Vue.JS, Angular, HTML, </p>
-              <p style="font-size: 15px; color: #474a51; margin-top:-15px;" >Bootstrap, e CSS. Pós-graduação em análise e desenvolvimento de  </p>
-              <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >programas.Conhecimentos técnicos na utilização de CRM (Pipedrive), CMS </p>
-              <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >(Magento e Wordpress), Google Drive, Office, Google Docs, Slack, Discord, Google </p>
-              <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >Meet, Microsoft Teams e Trello. </p>
+              <h2 class="meu-template__subtitulo">COMPETÊNCIAS</h2>
+              <p class="meu-template__primeiro">Desenvolvimento de projetos para implantação de sites em Wordpress e HTML </p>
+              <p class="meu-template__segundo" >com desenvolvimento de aplicações web (web apps), e-commerce, email </p>
+              <p class="meu-template__terceiro" >marketing e mídia paga. Certificação em Javascript, Vue.JS, Angular, HTML, </p>
+              <p class="meu-template__segundo" >Bootstrap, e CSS. Pós-graduação em análise e desenvolvimento de  </p>
+              <p class="meu-template__terceiro" >programas.Conhecimentos técnicos na utilização de CRM (Pipedrive), CMS </p>
+              <p class="meu-template__terceiro" >(Magento e Wordpress), Google Drive, Office, Google Docs, Slack, Discord, Google </p>
+              <p class="meu-template__terceiro" >Meet, Microsoft Teams e Trello. </p>
           
-              <h2 style="font-size: 20px;">EXPERIÊNCIAS</h2>
-              <p style="font-size: 15px; color: #474a51"><b>Mitsuo, Campinas</b> - Desenvolvedor Front-end </p>
-              <p style="font-size: 15px; color: #474a51; margin-top:-15px;" >DESDE JUNHO DE 2020 </p>
+              <h2 class="meu-template__subtitulo"> EXPERIÊNCIAS</h2>
+              <p class="meu-template__primeiro"><b>Mitsuo, Campinas</b> - Desenvolvedor Front-end </p>
+              <p class="meu-template__segundo" >DESDE JUNHO DE 2020 </p>
             <ul>
               
-              <li style="font-size: 15px; color: #474a51; margin-top:-15px;" >Desenvolvimento de sites e e-commerces utilizando tecnologias como JavaScript, HTML5, CSS3. </li>
-              <li style="font-size: 15px; color: #474a51;" >Criação de aplicações web usando HTML5, CSS3, Javascript, Vue.JS e Angular. </li>
-              <li style="font-size: 15px; color: #474a51;" >Experiência em desenvolvimento e manutenção de sites em Wordpress, lojas NuvemShop, VTEX, Magento (Adobe Commerce) e Loja Integrada.  </li>
+              <li class="meu-template__segundo" >Desenvolvimento de sites e e-commerces utilizando tecnologias como JavaScript, HTML5, CSS3. </li>
+              <li class="meu-template__primeiro" >Criação de aplicações web usando HTML5, CSS3, Javascript, Vue.JS e Angular. </li>
+              <li class="meu-template__primeiro" >Experiência em desenvolvimento e manutenção de sites em Wordpress, lojas NuvemShop, VTEX, Magento (Adobe Commerce) e Loja Integrada.  </li>
             </ul>
 
-            <h2 style="font-size: 20px;">EDUCAÇÃO</h2>
-            <p style="font-size: 15px; color: #474a51"><b>Descomplica Faculdade Digital</b> - <i>Pós Graduação Lato Sensu</i> </p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px;" >2022</p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >Especialização, Pós Graduação em Análise e Desenvolvimento de Programas </p>
+            <h2 class="meu-template__subtitulo">EDUCAÇÃO</h2>
+            <p class="meu-template__primeiro"><b>Descomplica Faculdade Digital</b> - <i>Pós Graduação Lato Sensu</i> </p>
+            <p class="meu-template__segundo" >2022</p>
+            <p class="meu-template__terceiro" >Especialização, Pós Graduação em Análise e Desenvolvimento de Programas </p>
             
          
-            <h2 style="font-size: 20px;">CERTIFICAÇÕES</h2>
-            <p style="font-size: 15px; color: #474a51"><b>IGTI - Instituto de Gestão e Tecnologia da Informação</b> </p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px;" >2022</p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >Especialização, Pós Graduação em Análise e Desenvolvimento de Programas </p>
+            <h2 class="meu-template__subtitulo">CERTIFICAÇÕES</h2>
+            <p class="meu-template__primeiro"><b>IGTI - Instituto de Gestão e Tecnologia da Informação</b> </p>
+            <p class="meu-template__segundo" >2022</p>
+            <p class="meu-template__terceiro" >Especialização, Pós Graduação em Análise e Desenvolvimento de Programas </p>
             </div>
 
 
             <div class="primeiro"  style="background-color: white;">
-              <div style="height: 8px; width: 620px; background: #0061d4; margin-bottom: 25px;"></div>
+              <div class="meu-template__decoracao"></div>
 
-            <h2 style="font-size: 20px;">CERTIFICAÇÕES</h2>
-            <p style="font-size: 15px; color: #474a51"><b>DIO - Digital Innovation One</b> </p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px;" >2021</p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >Certificado em Introdução a criação de websites com HTML5 e CSS3. </p>
+            <h2 class="meu-template__subtitulo">CERTIFICAÇÕES</h2>
+            <p class="meu-template__primeiro"><b>DIO - Digital Innovation One</b> </p>
+            <p class="meu-template__segundo" >2021</p>
+            <p class="meu-template__terceiro" >Certificado em Introdução a criação de websites com HTML5 e CSS3. </p>
 
-            <p style="font-size: 15px; color: #474a51"><b>DIO - Digital Innovation One</b> </p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px;" >2021</p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >Certificado em Programação para internet com Javascript. </p>
+            <p class="meu-template__primeiro"><b>DIO - Digital Innovation One</b> </p>
+            <p class="meu-template__segundo" >2021</p>
+            <p class="meu-template__terceiro" >Certificado em Programação para internet com Javascript. </p>
             
-            <p style="font-size: 15px; color: #474a51"><b>DIO - Digital Innovation One</b> </p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px;" >2021</p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >Certificado em Projetos ágeis com Scrum. </p>
+            <p class="meu-template__primeiro"><b>DIO - Digital Innovation One</b> </p>
+            <p class="meu-template__segundo" >2021</p>
+            <p class="meu-template__terceiro" >Certificado em Projetos ágeis com Scrum. </p>
 
-            <p style="font-size: 15px; color: #474a51"><b>DIO - Digital Innovation One</b> </p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px;" >2021</p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >Certificado em Construindo páginas para internet com Bootstrap. </p>
+            <p class="meu-template__primeiro"><b>DIO - Digital Innovation One</b> </p>
+            <p class="meu-template__segundo" >2021</p>
+            <p class="meu-template__terceiro" >Certificado em Construindo páginas para internet com Bootstrap. </p>
             
-            <p style="font-size: 15px; color: #474a51"><b>DIO - Digital Innovation One</b> </p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px;" >2022</p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >Certificado em Sintaxe e operadores. </p>
+            <p class="meu-template__primeiro"><b>DIO - Digital Innovation One</b> </p>
+            <p class="meu-template__segundo" >2022</p>
+            <p class="meu-template__terceiro" >Certificado em Sintaxe e operadores. </p>
             
-            <p style="font-size: 15px; color: #474a51"><b>DIO - Digital Innovation One</b> </p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px;" >2022</p>
-            <p style="font-size: 15px; color: #474a51; margin-top:-15px; margin-bottom: 20px;" >Certificado em Funções. </p>
+            <p class="meu-template__primeiro"><b>DIO - Digital Innovation One</b> </p>
+            <p class="meu-template__segundo" >2022</p>
+            <p class="meu-template__terceiro" >Certificado em Funções. </p>
 
           
           </div>
@@ -153,11 +154,11 @@
             <a id= "saibamais"></a>
             <h1>Portifólio</h1>
       
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 cartao">
               <div class="col">
                 <div class="card shadow-sm">
-                <div  style="display: flex; justify-content: center; align-items: center;">
-                 <a href="https://sawonutri.com/"> <img src="img/Sawonutri.png" alt="" style="height: 225px; width: auto; margin: 15px auto;"></a>
+                <div  class="cartao__imagem">
+                 <a href="https://sawonutri.com/"> <img src="img/Sawonutri.png" alt="" class="bd-placeholder-img card-img-top"></a>
                 </div>
                   <div class="card-body">
                     <p class="card-text"> Site (Sawonutri) é feito com Wordpress tendo diversos elementos dinâmicos e aplicações webs (Web Apps).</p>
@@ -173,8 +174,8 @@
               </div>
               <div class="col">
                 <div class="card shadow-sm">
-                  <div  style="display: flex; justify-content: center; align-items: center;" >
-                    <a href="Site academia/index.html"><img src="img/Site academia.png" alt="" style="height: 225px; width: auto; margin: 15px auto;"></a>
+                  <div  class="cartao__imagem" >
+                    <a href="Site academia/index.html"><img src="img/Site academia.png" alt="" class="bd-placeholder-img card-img-top"></a>
                   </div>
       
                   <div class="card-body">
@@ -191,8 +192,8 @@
               </div>
               <div class="col">
                 <div class="card shadow-sm">
-                  <div  style="display: flex; justify-content: center; align-items: center;" >
-                    <a href="Cachorro Mania/index.html"><img src="img/cachorro.png" alt="" style="height: 225px; width: auto; margin: 15px auto;"></a>
+                  <div  class="cartao__imagem" >
+                    <a href="Cachorro Mania/index.html"><img src="img/cachorro.png" alt="" class="bd-placeholder-img card-img-top"></a>
                   </div>
                   <div class="card-body">
                     <p class="card-text">Site simples, porém com efeitos visuais feito com Html, CSS, Javascript e Bootstrap. Utilizando também carousel.</p>
@@ -208,8 +209,8 @@
               </div>
               <div class="col">
                 <div class="card shadow-sm">
-                <div  style="display: flex; justify-content: center; align-items: center;">
-                 <a href="Ata reunião/index.html"> <img src="img/Programa plano.png" alt="" style="height: 225px; width: 170px; margin: 15px auto;"></a>
+                <div  class="cartao__imagem">
+                 <a href="Ata reunião/index.html"> <img src="img/Programa plano.png" alt="" style="max-height: 220px; width: auto; margin: 15px auto;"></a>
                 </div>
                   <div class="card-body">
                     <p class="card-text">O programa ata de reunião tem por objetivo auxiliar na construção da ata e servir como um guia em reuniões em geral.</p>
@@ -225,8 +226,8 @@
               </div>
               <div class="col">
                 <div class="card shadow-sm">
-                  <div  style="display: flex; justify-content: center; align-items: center;" >
-                    <a href="Calculadora IMC/index.html"><img src="img/Calculadora IMC.png" alt="" style="height: 225px; width: auto; margin: 15px auto;"></a>
+                  <div  class="cartao__imagem" >
+                    <a href="Calculadora IMC/index.html"><img src="img/Calculadora IMC.png" style="max-height: 250px" alt="" class="bd-placeholder-img card-img-top"></a>
                   </div>
       
                   <div class="card-body">
@@ -243,14 +244,14 @@
               </div>
               <div class="col">
                 <div class="card shadow-sm">
-                  <div  style="display: flex; justify-content: center; align-items: center;" >
-                    <a href="Peso ideal/index.html"><img src="img/Peso ideal.png" alt="" style="height: 225px; width: auto; margin: 15px auto;"></a>
+                  <div  class="cartao__imagem" >
+                    <a href="Simulador de passagens/index.html"><img src="img/simulador passagem.jpg" alt="" class="bd-placeholder-img card-img-top" style="max-height: 250px;"></a>
                   </div>
                   <div class="card-body">
-                    <p class="card-text">O peso ideal é diferente para cada tipo de pessoa e objetivo. Este app faz o cálculo do peso ideal de acordo com cada objetivo.</p>
+                    <p class="card-text">Este app simula a distância entre cidades e o preço de uma viagem dependendo da distância.</p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                        <a href="Peso ideal/index.html" class="btn btn-sm btn-outline-secondary">View</a>
+                        <a href="Simulador de passagens/index.html" class="btn btn-sm btn-outline-secondary">View</a>
 
                       </div>
                       
@@ -260,87 +261,87 @@
               </div>
               </div>
 
-              <section style="margin-top: 80px ;">
-                <h2 style="margin-left: 0;">CONHECIMENTOS</h2>
-                <div class="parallax__background2 ">
-                  <div style="width: 800px; height: 450px; display: flex; flex-flow: row wrap; margin: auto; padding-top: 70px; " >
-                    <div class="flip-container">
-                      <div class="flipper">
-                        <div class="front">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-around; align-items: center;"><img src="img/html.png" alt="" style="height: 60px;"><p>HTML5</p></div>
+              <section class="conhecimento">
+                <h2>CONHECIMENTOS (DETALHES NO VERSO DO CARTÃO).</h2>
+                <div class="conhecimento__parallax-background2">
+                  <div class="conhecimento__container" >
+                    <div class="conhecimento__flip-container">
+                      <div class="conhecimento__flipper">
+                        <div class="conhecimento__front">
+                          <div><img src="img/html.png" alt="" style="height: 60px;"><p>HTML5</p></div>
                         </div>
-                        <div class="back">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: block; padding: 15px"><p>Conhecimento de HTML5, com cursos e certificações para a linguagem de marcação.</p></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flip-container">
-                      <div class="flipper">
-                        <div class="front">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-around; align-items: center;"><img src="img/css-3.png" alt="" style="height: 60px;"><p>CSS3</p></div>
-                        </div>
-                        <div class="back">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: block; padding: 15px"><p>Conhecimento de CSS3, incluindo animações e flexbox.</p></div>
+                        <div class="conhecimento__back">
+                          <div><p>Conhecimento de HTML5, com cursos e certificações para a linguagem de marcação.</p></div>
                         </div>
                       </div>
                     </div>
-                    <div class="flip-container">
-                      <div class="flipper">
-                        <div class="front">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-around; align-items: center;"><img src="img/js.png" alt="" style="height: 60px;"><p>Javascript</p></div>
+                    <div class="conhecimento__flip-container">
+                      <div class="conhecimento__flipper">
+                        <div class="conhecimento__front">
+                          <div><img src="img/css-3.png" alt="" style="height: 60px;"><p>CSS3</p></div>
                         </div>
-                        <div class="back">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: block; padding: 15px"><p>Conhecimento das principais sintaxes da linguagem e manutenção de um site dinâmico.</p></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flip-container">
-                      <div class="flipper">
-                        <div class="front">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-around; align-items: center;"><img src="img/vuejs.png" alt="" style="height: 60px;"><p>Vue.js</p></div>
-                        </div>
-                        <div class="back">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: block; padding: 15px"><p>Conhecimento das principais sintaxes, com curso para suas últimas atualizações. </p></div>
+                        <div class="conhecimento__back">
+                          <div ><p>Conhecimento de CSS3, incluindo animações e flexbox.</p></div>
                         </div>
                       </div>
                     </div>
-                    <div class="flip-container">
-                      <div class="flipper">
-                        <div class="front">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-around; align-items: center;"><img src="img/angular.png" alt="" style="height: 70px;"><p>Angular</p></div>
+                    <div class="conhecimento__flip-container">
+                      <div class="conhecimento__flipper">
+                        <div class="conhecimento__front">
+                          <div><img src="img/js.png" alt="" style="height: 60px;"><p>Javascript</p></div>
                         </div>
-                        <div class="back">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: block; padding: 15px"><p>Conhecimento do framework, com curso para suas últimas atualizações. </p></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flip-container">
-                      <div class="flipper">
-                        <div class="front">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-around; align-items: center;"><img src="img/wordpress.png" alt="" style="height: 60px;"><p>Wordpress</p></div>
-                        </div>
-                        <div class="back">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: block; padding: 15px"><p>Conhecimento em Wordpress e facilidade na montagem de sites e blogs. </p></div>
+                        <div class="conhecimento__back">
+                          <div ><p>Conhecimento das principais sintaxes da linguagem e manutenção de um site dinâmico.</p></div>
                         </div>
                       </div>
                     </div>
-                    <div class="flip-container">
-                      <div class="flipper">
-                        <div class="front">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-around; align-items: center;"><img src="img/vscode.png" alt="" style="height: 60px;"><p>Vscode</p></div>
+                    <div class="conhecimento__flip-container">
+                      <div class="conhecimento__flipper">
+                        <div class="conhecimento__front">
+                          <div><img src="img/vuejs.png" alt="" style="height: 60px;"><p>Vue.js</p></div>
                         </div>
-                        <div class="back">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: block; padding: 15px"><p>Conhecimento do IDE Vscode e outros como Stackblitz. </p></div>
+                        <div class="conhecimento__back">
+                          <div ><p>Conhecimento das principais sintaxes, com curso para suas últimas atualizações. </p></div>
                         </div>
                       </div>
                     </div>
-                    <div class="flip-container">
-                      <div class="flipper">
-                        <div class="front">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-around; align-items: center;"><img src="img/mailchimp.png" alt="" style="height: 60px;"><p>Mailchimp</p></div>
+                    <div class="conhecimento__flip-container">
+                      <div class="conhecimento__flipper">
+                        <div class="conhecimento__front">
+                          <div><img src="img/angular.png" alt="" style="height: 70px;"><p>Angular</p></div>
                         </div>
-                        <div class="back">
-                          <div style=" background-color: white; height: 170px; margin:auto; width: 170px; border-radius: 10px; display: block; padding: 15px"><p>Conhecimento e facilidade na utilização para disparo de e-mail marketing. </p></div>
+                        <div class="conhecimento__back">
+                          <div ><p>Conhecimento do framework, com curso para suas últimas atualizações. </p></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="conhecimento__flip-container">
+                      <div class="conhecimento__flipper">
+                        <div class="conhecimento__front">
+                          <div><img src="img/wordpress.png" alt="" style="height: 60px;"><p>Wordpress</p></div>
+                        </div>
+                        <div class="conhecimento__back">
+                          <div ><p>Conhecimento em Wordpress e facilidade na montagem de sites e blogs. </p></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="conhecimento__flip-container">
+                      <div class="conhecimento__flipper">
+                        <div class="conhecimento__front">
+                          <div><img src="img/vscode.png" alt="" style="height: 60px;"><p>Vscode</p></div>
+                        </div>
+                        <div class="conhecimento__back">
+                          <div ><p>Conhecimento do IDE Vscode e outros como Stackblitz. </p></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="conhecimento__flip-container">
+                      <div class="conhecimento__flipper">
+                        <div class="conhecimento__front">
+                          <div><img src="img/mailchimp.png" alt="" style="height: 60px;"><p>Mailchimp</p></div>
+                        </div>
+                        <div class="conhecimento__back">
+                          <div ><p>Conhecimento e facilidade na utilização para disparo de e-mail marketing. </p></div>
                         </div>
                       </div>
                     </div>
@@ -356,12 +357,12 @@
       
               </section>
 
-        <div class="card" style="width: 1025px; margin: 80px auto;">
+        <div class="card curriculo" style="width: auto; margin: 80px auto;">
           <h5 class="card-header">Currículo</h5>
           <div class="card-body">
             <h5 class="card-title">Quer conhecer mais sobre a minha tragetória?</h5>
             <p class="card-text">Front-end developer com pós-graduação em análise de sistemas e desenvolvimento de programas</p>
-            <button class="btn btn-primary" onclick="teste()">Saiba Mais</button>
+            <a href="#curriculo" class="btn btn-primary" onmouseover="curriculo()">Saiba Mais</a>
           </div>
         </div>
 
@@ -392,7 +393,7 @@
 
         <script>
 
-          function teste () {
+          function curriculo () {
 
           //inclusão do template fora do webcomponent você pega com o id
           const template = document.getElementById("meu-template");
