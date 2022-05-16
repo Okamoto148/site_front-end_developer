@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✈Simulador de passagens</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<div id="app">
+  <div v-if="inicio">
+    <div class="text-center">
+    
+      <section class="form-signin w-100 m-auto " >
+        <form style="height: 450px; width: 310px; margin: 90px auto;">
+          <img class="mb-4" src="img/logo leandro.png" alt=""  height="57">
+          <h1 class="h3 mb-3 fw-normal">Planeje sua viagem!</h1>
+      
+     
+          <img src="img/ilha2.jpg" alt="">
+          <button class="w-100 btn btn-lg btn-primary" @click="tempoplane" type="button">Clique aqui</button>
+          <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+        </form>
+      </section>
+      </div>
+      </div>
+      <div v-if="!inicio">
+    <div style="height: 150px; width: 100%; background-color: white;" v-cloak><img src="img/plane.png" :class="tempo<=9?plane:naoAviao" alt=""> </div>
+
+  <h3>Faça a viagem dos seus sonhos!</h3>
+  <p>Use milhas para ter os melhores pacotes de viagem e aproveite suas férias!</p>
+  <main>
+  <div class="interface">
+    <form>
+        <div class="mb-3">
+          <label class="form-label">País de origem</label>
+          <select class="form-select" aria-label="Default select example" v-model="paisOrigem" >
+            <option  v-for="pais in paises" :key="pais" :value="pais" >{{pais.country}}</option>
+          </select>
+        </div>
+
+        
+        <div class="mb-3">
+          <label class="form-label">Cidade de Origem</label>
+          <select class="form-select" aria-label="Default select example" v-model="cidadeOrigem" >
+            <option  v-for="cidade in paisOrigem.cities" :key="cidade" :value="cidade">{{cidade.city}}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">País de destino</label>
+          <select class="form-select" aria-label="Default select example" v-model="paisDestino" >
+            <option  v-for="pais in paises" :key="pais" :value="pais" >{{pais.country}}</option>
+          </select>
+        </div>
+  
+
+  
+        <div class="mb-3">
+          <label class="form-label">Cidade de destino</label>
+          <select class="form-select" aria-label="Default select example" v-model="cidadeDestino">
+            <option v-for="cidade in paisDestino.cities" :key="cidade"  :value="cidade">{{cidade.city}}</option>
+          </select>
+          <p class="form-label" v-if="cidadeOrigem==cidadeDestino"><b>A cidade de Origem precisa ser diferente da cidade de destino!</b></p>
+
+
+        </div>
+        <span style="margin-right: 65px; margin-left: 45px">Adulto</span>
+        <span>Criança</span>
+        <div class="container__contadores">
+        
+          <span><button type="button" @click="counterAdulto++" style="height: 25px; width: 25px;">+</button> {{counterAdulto}} <button type="button" style="height: 25px; width: 25px;" @click="counterAdulto--" :disabled="counterAdulto<=0?true:false" >-</button></span>
+          <span><button type="button" style="height: 25px; width: 25px;" @click="counterCrianca++" :disabled="counterAdulto<=0?true:false">+</button> {{counterCrianca}} <button style="height: 25px; width: 25px;" type="button" @click="counterCrianca--" :disabled="counterAdulto<=0?true:false || counterCrianca<=0?true:false">-</button></span>
+        </div>
+        <div style="display: flex; margin-top: 20px; justify-content: space-between">
+          <p><input type="radio" name="classe" v-model="radio" value="Econômica">Econômica</p>
+          <p><input type="radio" name="classe" v-model="radio" value="Executiva">Executiva</p>
+  
+        </div>
+     
+        <p class="milhas">Utilizar {{milha}} milhas:</p>
+          <input class="input" type="range" v-model="milha" min="0" max="50000" @click="descontoMilhas"> 
+
+         
+  
+    </form>
+  </div>
+  
+  <div class="interface" style="margin-top: 0px; ">
+    <h5>Resumo da viagem</h5>
+    <div class="resumo">Origem: {{paisOrigem.country}} <span v-if="cidadeOrigem!=''">({{cidadeOrigem.city}})</span></div>
+    <div class="resumo">Destino: {{paisDestino.country}} <span v-if="cidadeDestino!=''">({{cidadeDestino.city}})</span></div>
+    <div class="resumo">Distância: {{distancia}} km</div>
+    <div class="resumo"> {{counterAdulto}} adulto, {{counterCrianca}} criança</div>
+    <div class="resumo">Tipo de vôo: Classe {{radio}}</div>
+    <div class="resumo">{{milha}} Milhas</div>
+    <div class="resumo">Valor abatido por milhas: R$ {{milha*0.02}}</div>
+    <div class="resumo">Total: R$ {{precoFinal2}}</div>
+
+    <button type="button" class="btn btn-primary" @click="calcular">Calcular</button>
+
+    <img src="img/ilha2.jpg" style="height:180px; width: auto;" height="200px" width="auto" alt="">
+
+  
+  </div>
+  </main>
+</div>
+  </div>
+
+<script src="https://unpkg.com/vue@3.0.4"></script>
+<script>
+    const app= {
+      data(){
+    return{
+      plane:"plane",
+      naoAviao:"naoAviao",
+      inicio: true,
+      tempo: 0,
+      counterAdulto: 0,
+      counterCrianca: 0,
+      radio:"",
+      milha:null,
+      desconto: null,
+      distancia: null,
+      preco: null,
+
+      paisDestino:{},
+      paisOrigem:{},
+      paises: [{
+
+        country: "Brasil",
+        cities: [
+            {
+                city: "São Paulo",
+                latitude: -23.54,
+                longitude: -46.64
+            },
+            {
+                city: "Gramado",
+                latitude: -29.36,
+                longitude: -50.87
+            },
+            {
+                city: "Cuiabá",
+                latitude: -15.59,
+                longitude: -56.09
+            },
+            {
+                city: "Recife",
+                latitude: -8.05,
+                longitude: -34.88
+            },
+            {
+                city: "Manaus",
+                latitude: -3.10,
+                longitude: -60.02
+            }
+        ]
+    },
+    {
+        country: "Canadá",
+        cities: [
+            {
+                city: "Montreal",
+                latitude: 45.51,
+                longitude: -73.65
+            },
+            {
+                city: "Ottawa",
+                latitude: 45.42,
+                longitude: -75.69
+            },
+            {
+                city: "Vancouver",
+                latitude: 49.30,
+                longitude: -123.10
+            }
+        ]
+    },
+    {
+        country: "Egito",
+        cities: [
+            {
+                city: "Cairo",
+                latitude: 30.04,
+                longitude:  31.24
+            }
+        ]
+    },
+    {
+        country: "Bélgica",
+        cities: [
+            {
+                city: "Bruxelas",
+                latitude: 50.83,
+                longitude: 4.35
+            },
+            {
+                city: "Bruges",
+                latitude: 51.2,
+                longitude: 3.21
+            }
+        ]
+    },
+    {
+        country: "Japão",
+        cities: [
+            {
+                city: "Tóquio",
+                latitude: 35.68,
+                longitude: 139.69
+            },
+            {
+                city: "Quioto",
+                latitude: 35.01,
+                longitude: 135.76
+            },
+            {
+                city: "Osaka",
+                latitude: 34.69,
+                longitude: 135.50
+            }
+        ]
+      }
+      ],
+      cidadeOrigem: [],
+      cidadeDestino:[],
+      precoFinal: null,
+      precoFinal2: null,
+      EARTH_RADIUS: null,
+      diffLatitudeRadians: null,
+      destinationLatitude: null,
+      originLatitude: null,
+      diffLongitudeRadians: null,
+      destinationLongitude: null,
+      originLongitude: null,
+      c: null,
+      distancia: null,
+
+
+      
+
+
+    }
+  },
+
+  methods:{
+    tempoplane(){
+      let teste = setInterval(()=>{
+        if(this.tempo<=9){
+          this.tempo++;
+        }else{
+          clearInterval(teste);
+        }
+    },1000
+      )
+      this.inicio = false;
+    },
+
+     
+    calcular(){
+
+      if(this.counterAdulto==0){
+        alert("É necessário adicionar ao menos 1 adulto!");
+      }
+
+      function deg2rad(deg) {
+      return deg * (0.0174533)
+      }
+
+    this.originLatitude = this.cidadeOrigem.latitude;
+    this.destinationLatitude = this.cidadeDestino.latitude;
+    this.originLongitude = this.cidadeOrigem.longitude;
+    this.destinationLongitude = this.cidadeDestino.longitude;
+
+    this.EARTH_RADIUS = 6371.071; // Radius of the earth in km
+    this.diffLatitudeRadians = deg2rad((this.destinationLatitude-this.originLatitude));  // deg2rad below
+    this.diffLongitudeRadians = deg2rad((this.destinationLongitude-this.originLongitude)); 
+    this.a = 
+    Math.sin(this.diffLatitudeRadians/2) * Math.sin(this.diffLatitudeRadians/2) +
+    Math.cos(deg2rad((this.originLatitude))) * Math.cos(deg2rad((this.destinationLatitude))) * 
+    Math.sin(this.diffLongitudeRadians/2) * Math.sin(this.diffLongitudeRadians/2)
+    ; 
+    this.c = 2 * Math.atan2(Math.sqrt(this.a), Math.sqrt(1-this.a)); 
+    this.distancia = (this.EARTH_RADIUS * this.c).toFixed(1); // Distance in km
+
+
+      //calculo para passagens mesmo país
+      if(this.radio=="Econômica"){
+          if(this.paisOrigem==this.paisDestino){
+            this.preco = 0.3*this.counterAdulto*this.distancia + 0.15*this.counterCrianca*this.distancia;
+          }else{
+            this.preco = 0.5*this.counterAdulto*this.distancia + 0.25*this.counterCrianca*this.distancia;
+          }
+      }else if(this.radio=="Executiva"){
+        if(this.paisOrigem==this.paisDestino){
+            this.preco = (0.3*this.counterAdulto*this.distancia*1.8) + (0.15*this.counterCrianca*this.distancia*1.4);
+          }else{
+            this.preco = (0.5*this.counterAdulto*this.distancia*1.8) + (0.25*this.counterCrianca*this.distancia*1.4);
+          }
+      }else{alert("escolha viagem Econômica ou Executiva")}
+      this.desconto = this.milha*0.02
+      this.precoFinal = (this.preco - this.desconto).toFixed(2);
+
+      if(this.precoFinal<0){
+        alert(`Não é possível que o desconto de milhas seja maior do que o preço da passagem! O preço da passagem sem desconto é de R$ ${this.preco}`);
+        this.precoFinal2=null;
+      }else{
+        this.precoFinal2=this.precoFinal;
+      }
+    },
+
+}
+  }
+
+
+
+    
+Vue.createApp(app).mount("#app");
+</script>
+    
+</body>
+</html>

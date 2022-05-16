@@ -1,0 +1,89 @@
+[v-cloak]{
+  display: none;
+}
+
+h3, p{
+    text-align: center;
+  }
+  
+  main{
+    width: 700px;
+    margin: auto;
+    display: flex;
+  }
+  
+  .interface{
+    width: 300px;
+    min-height: 600px;
+    margin: auto;
+    border: 1px solid lightgray;
+    padding: 1rem;
+
+  }
+  
+  .container__contadores{
+    display: flex;
+    justify-content: space-evenly;;
+  }
+  
+  .button{
+    height: 25px;
+    width: 25px;
+    background: lightgray;
+    border-radius: 5px;
+    border: none
+  }
+  
+  .contadores{
+    width: 30px;
+  }
+  
+  .milhas{
+    margin: 20px auto 0 auto;
+    text-align: left;
+  }
+  
+  .input{
+    width: 100%
+  }
+  
+  .resumo{
+    margin-top: 1rem;
+  }
+
+  .distancia{
+    border: none;
+ }
+
+ .distancia:hover{
+   border: 1px dashed black;
+ }
+
+ .plane{
+  animation: voo 10s linear;
+ }
+
+ @keyframes voo{
+  0%{
+  
+    margin-left: 0;
+  }
+
+
+  50%{
+    display: block;
+    margin-left: 50%;
+  }
+
+  100%{
+    display: block;
+    margin-left: 100%;
+  }
+
+
+ }
+
+ .naoAviao{
+   display: none;
+ }
+
