@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🛒Lista de Compras</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <style>
+  [v-cloak]{
+    display: none;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div id="primeiro">
+    <div class="primeiro"  style="margin: 50px auto;">
+    <h1 style="text-align: center;">🛒Lista de compras</h1>
+    <div>
+      <form @submit="gravar">
+        <select class="pointer form-select" aria-label="Default select example" v-model="selecao">
+          <option value="null">Selecione o tipo de item</option>
+          <option value="Secos">Secos</option>
+          <option value="Limpeza">Limpeza</option>
+          <option value="Congelados">Congelados</option>
+        </select>
+        <input class="form-control form-control-lg" v-model="quantidade" type="number" placeholder="Coloque aqui a quantidade"
+          aria-label=".form-control-lg example">
+        <input class="form-control form-control-lg" v-model="description" type="text" placeholder="Coloque aqui o item"
+          aria-label=".form-control-lg example" style="margin-top: 5px;">
+        <button  class="button btn btn-primary"  type="submit">Gravar</button>
+      </form>
+
+
+      
+    
+      <p style="font-weight: bold; font-size: 30px;">Itens para compra</p>
+      <div :class="todoList" v-for="(item, index) in listaCompras"  style="margin-top: 15px; display: flex; flex-flow: column nowrap;">
+        <h2 style=" font-size: 25px; width: 100%; margin-top: 15px; " v-if="index == 0 || item.tipo != listaCompras[index - 1].tipo" v-cloak>{{item.tipo}}</h2>
+        <span style="display: flex; justify-content: space-between" ><span ><input style="margin-right: 3px; vertical-align: middle; position: relative; top: -5px; " class="form-check-input" type="checkbox" v-model="item.feito">
+          <label class="form-check-label" for="flexCheckDefault" v-cloak style="font-size: 20px;">
+            {{item.quant}} {{item.description}}
+          </label></span>
+          <span>
+            <svg @click="editar(index)"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="pointer bi bi-pencil" viewBox="0 0 16 16">
+              <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+            </svg>
+          
+            <svg @click="apagar(index)" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="pointer bi bi-trash" viewBox="0 0 16 16">
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                <path fill-rule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+              </svg>
+          </span>
+        </span>
+        </div>
+
+     
+
+    </div>
+  <p v-cloak>Itens faltantes: {{listaCompras.filter(faltantes).length}}</p>
+  <p v-cloak>Faltante: {{soma}} <span v-if="soma!=null">unidades</span></p>
+
+  
+
+  <button type="button" class="button btn btn-primary" @click="quantFaltante" style="margin-right: 10px;">Verificar</button>
+  <button type="button" class="button btn btn-primary" @mouseover.once="aviso" @click="listaComprasOriginal" style="margin-right: 10px;" >Retornar lista original</button>
+  <button type="button" class="button btn btn-primary" @mouseover.once="aviso" @click="listaNova">Limpar lista</button>
+
+    <img src="img/carrinho.jpg" alt="">
+    <a style="font-size: 10px;" href='https://br.freepik.com/fotos-vetores-gratis/carrinho-de-compras'>Carrinho de compras vetor criado por macrovector - br.freepik.com</a>
+  </div>
+
+    <div class="segundo"  style="margin: 50px auto;">
+      <p style="font-weight: bold; font-size: 35px;">Lista Original</p>
+      <p style=" font-size: 25px; margin-bottom: -10px;">Secos</p>
+      <p :class="todoList" v-for="(item, index) in listaCompras2" style="margin-top: 15px;">
+        <span><input style="margin-right: 3px; vertical-align: middle; position: relative; top: -5px; " class="form-check-input" type="checkbox" v-model="item.feito">
+          <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;" v-cloak>
+            {{item.quant}} {{item.description}}
+          </label></span>
+        <span>
+      <p style="font-size: 25px; margin-top: 40px; margin-bottom: -10px;">Limpeza</p>
+      <p :class="todoList" v-for="(item, index) in listaLimpeza2" style="margin-top: 15px;">
+        <span><input style="margin-right: 3px; vertical-align: middle; position: relative; top: -5px; " class="form-check-input" type="checkbox" v-model="item.feito">
+          <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;" v-cloak>
+            {{item.quant}} {{item.description}}
+          </label></span>
+        <span>
+      <p style="font-size: 25px; margin-top: 40px; margin-bottom: -10px;">Congelados</p>
+      <p :class="todoList" v-for="(item, index) in listaCongelado2" style="margin-top: 15px;">
+        <span><input style="margin-right: 3px; vertical-align: middle; position: relative; top: -5px; " class="form-check-input" type="checkbox" v-model="item.feito">
+          <label class="form-check-label" for="flexCheckDefault" style="font-size: 20px;" v-cloak>
+            {{item.quant}} {{item.description}}
+          </label></span>
+        <span>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue@3.0.4"></script>
+
+  <script>
+    const app = {
+      data() {
+        return {
+          selecao: null,
+          description: "",
+          listaCompras: [],
+          editMode: true,
+          todoList: "todoList",
+          feito: false,
+          todo:null,
+          todo2:null,
+          todo3:null,
+          index:null,
+          nextId:21,
+          realId: null,
+          quantidade: null,
+          quantidadeFaltante: null,
+          listaQuant:[],
+          quant: [],
+          teste:[],
+          listaTeste: [],
+          soma: null,
+          listaLimpeza: [],
+          testar:null,
+          listaCongelado: [],
+          listaCompras2: [{id: 1, description: "Arroz", feito: this.feito, quant: 12}, {id: 2, description: "Feijão", feito: this.feito, quant: 5}, {id: 3, description: "Tempero", feito: this.feito, quant: 2}, {id: 4, description: "Açúcar", feito: this.feito, quant: 5}, {id: 5, description: "Milho", feito: this.feito, quant: 3},
+            {id: 6, description: "Ervilha", feito: this.feito, quant: 3}, {id: 7, description: "Filtro de café", feito: this.feito, quant: 1}, {id: 8, description: "Café", feito: this.feito, quant: 1}, {id: 9, description: "Bombom", feito: this.feito, quant: 4}, {id: 10, description: "Farinha de trigo", feito: this.feito, quant: 2}, 
+            {id: 11, description: "Fubá", feito: this.feito, quant: 1}, {id: 12, description: "Leite", feito: this.feito, quant: 2}, {id: 13, description: "Farinha láctea", feito: this.feito, quant: 2}, {id: 14, description: "Torrada", feito: this.feito, quant: 4}, {id: 15, description: "Batata palha", feito: this.feito, quant: 3}, 
+            {id: 16, description: "Batata", feito: this.feito, quant: 3}, {id: 17, description: "Salgadinhos", feito: this.feito, quant: 3}, {id: 18, description: "Cream Cracker", feito: this.feito, quant: 2}, {id: 19, description: "Sal", feito: this.feito, quant: 1}, {id: 20, description: "Fermento", feito: this.feito, quant: 1}, 
+            {id: 21, description: "Tang", feito: this.feito, quant: 6}, {id: 22, description: "Doce de Leite", feito: this.feito, quant: 1}, {id: 23, description: "Bisnaguinha", feito: this.feito, quant: 6}, {id: 20, description: "Sopa", feito: this.feito, quant: 4},
+          ],
+
+          listaLimpeza2: [{id: 1, description: "Pasta de dente", feito: this.feito, quant: 2}, {id: 2, description: "Shampoo", feito: this.feito, quant: 2}, {id: 42, description: "Pano", feito: this.feito, quant: 2}, {id: 43, description: "Escova de dente", feito: this.feito, quant: 3}, {id: 44, description: "Sabonete", feito: this.feito, quant: 6}, 
+            {id: 45, description: "Sabonete líquido", feito: this.feito, quant: 2}, {id: 46, description: "Sabonete Daniel", feito: this.feito, quant: 2}, {id: 47, description: "Esponja", feito: this.feito, quant: 2}, {id: 48, description: "Sabão em pó", feito: this.feito, quant: 2}],
+
+          listaCongelado2:[{id: 60, description: "Frango", feito: this.feito, quant: 5}, {id: 61, description: "Lasanhas", feito: this.feito, quant: 2}, {id: 62, description: "Torta", feito: this.feito, quant: 2}, {id: 63, description: "Vegetais", feito: this.feito, quant: 3}, {id: 64, description: "Almondega", feito: this.feito, quant: 2}, 
+      {id: 65, description: "Salgadinho Congelado", feito: this.feito, quant: 5}, {id: 66, description: "Folhadinho", feito: this.feito, quant: 2}]
+
+
+        }
+      },
+
+      watch:{
+        listaCompras(){
+          this.listaCompras.sort(function (a,b){
+            if(b.tipo > a.tipo){
+              return 1;
+            }
+            if(b.tipo < a.tipo){
+              return -1;
+            }
+
+            return 0;
+          });
+
+        },
+
+        
+      },
+
+      methods: {
+        quantFaltante(){
+
+          this.listaQuant=[];
+          this.soma=null
+          for(item of this.listaCompras){
+            if(!item.feito){
+            this.listaQuant.push(item.quant);
+          }
+          }
+
+          for (let i = 0; i < this.listaQuant.length; i++) {
+            this.soma += this.listaQuant[i];
+        }
+
+
+       
+      },
+        aviso(){
+          alert("Tem certeza?");
+        },
+        gravar(todo) {
+
+        if(!this.selecao){
+          alert("Favor inserir o tipo de produto!");
+        }else{
+          if(this.todo!=null){
+          const index = this.listaCompras.findIndex((item) => item.id === todo.id);
+          this.listaCompras[index] = this.todo;
+          this.todo.description = this.description;
+          this.todo.quant = parseInt(this.quantidade);
+          this.todo=null;
+          this.quantidade=null;
+         
+        }else{
+          this.listaCompras.push({id: this.nextId, description: this.description, feito: this.feito, quant: parseInt(this.quantidade), tipo: this.selecao});
+          this.nextId++;
+          localStorage.setItem("nextId", this.nextId);
+          this.todo=null;
+          document.location.reload(true);
+        }
+        localStorage.setItem("listaCompras", JSON.stringify(this.listaCompras));
+        this.editMode = false;
+        this.description="";
+        this.quantidade=null;
+
+        
+      }
+    },
+
+    faltantes(value){
+     return value.feito==false;
+     
+    },
+
+    listaNova(){
+      this.listaCompras=[];
+    },
+
+    
+    listaComprasOriginal(){
+      this.listaCompras= [{id: 1, description: "Arroz", feito: this.feito, quant: 12, tipo: "Secos"}, {id: 2, description: "Feijão", feito: this.feito, quant: 5, tipo: "Secos"}, {id: 3, description: "Tempero", feito: this.feito, quant: 2, tipo: "Secos"}, {id: 4, description: "Açúcar", feito: this.feito, quant: 5, tipo: "Secos"}, {id: 5, description: "Milho", feito: this.feito, quant: 3, tipo: "Secos"},
+            {id: 6, description: "Ervilha", feito: this.feito, quant: 3, tipo: "Secos"}, {id: 7, description: "Filtro de café", feito: this.feito, quant: 1, tipo: "Secos"}, {id: 8, description: "Café", feito: this.feito, quant: 1, tipo: "Secos"}, {id: 9, description: "Bombom", feito: this.feito, quant: 4, tipo: "Secos"}, {id: 10, description: "Farinha de trigo", feito: this.feito, quant: 2, tipo: "Secos"}, 
+            {id: 11, description: "Fubá", feito: this.feito, quant: 1, tipo: "Secos"}, {id: 12, description: "Leite", feito: this.feito, quant: 2, tipo: "Secos"}, {id: 13, description: "Farinha láctea", feito: this.feito, quant: 2, tipo: "Secos"}, {id: 14, description: "Torrada", feito: this.feito, quant: 4, tipo: "Secos"}, {id: 15, description: "Batata palha", feito: this.feito, quant: 3, tipo: "Secos"}, 
+            {id: 16, description: "Batata", feito: this.feito, quant: 3, tipo: "Secos"}, {id: 17, description: "Salgadinhos", feito: this.feito, quant: 3, tipo: "Secos"}, {id: 18, description: "Cream Cracker", feito: this.feito, quant: 2, tipo: "Secos"}, {id: 19, description: "Sal", feito: this.feito, quant: 1, tipo: "Secos"}, {id: 20, description: "Fermento", feito: this.feito, quant: 1, tipo: "Secos"}, 
+            {id: 21, description: "Tang", feito: this.feito, quant: 1, tipo: "Secos"}, 
+            {id: 51, description: "Pasta de dente", feito: this.feito, quant: 2, tipo: "Limpeza"}, {id: 51, description: "Shampoo", feito: this.feito, quant: 2, tipo: "Limpeza"}, {id: 52, description: "Pano", feito: this.feito, quant: 2, tipo: "Limpeza"}, {id: 53, description: "Escova de dente", feito: this.feito, quant: 3, tipo: "Limpeza"}, {id: 54, description: "Sabonete", feito: this.feito, quant: 6, tipo: "Limpeza"}, 
+            {id: 55, description: "Sabonete líquido", feito: this.feito, quant: 2, tipo: "Limpeza"}, {id: 56, description: "Sabonete Daniel", feito: this.feito, quant: 2, tipo: "Limpeza"}, {id: 57, description: "Esponja", feito: this.feito, quant: 2, tipo: "Limpeza"},
+            {id: 80, description: "Frango", feito: this.feito, quant: 5, tipo: "Congelados"}, {id: 81, description: "Lasanhas", feito: this.feito, quant: 2, tipo: "Congelados"}, {id: 82, description: "Torta", feito: this.feito, quant: 2, tipo: "Congelados"}, {id: 83, description: "Vegetais", feito: this.feito, quant: 3, tipo: "Congelados"}, {id: 64, description: "Almondega", feito: this.feito, quant: 2, tipo: "Congelados"}, 
+            {id: 85, description: "Salgadinho Congelado", feito: this.feito, quant: 5, tipo: "Congelados"}, {id: 86, description: "Folhadinho", feito: this.feito, quant: 2, tipo: "Congelados"}
+            ]
+            
+    },
+
+        apagar(index) {
+          this.listaCompras.splice(index, 1);
+          localStorage.setItem("listaCompras", JSON.stringify(this.listaCompras));
+
+
+        },
+
+
+        editar(index){
+          this.editMode=true;
+          this.todo = this.listaCompras[index];
+          this.description = this.todo.description;
+          this.quantidade = this.todo.quant;
+          this.selecao = this.todo.tipo;
+        }
+
+      },
+
+      created() {
+        const listaCompras = localStorage.getItem("listaCompras");
+        if (listaCompras) {
+          this.listaCompras = JSON.parse(listaCompras);
+        };
+        const nextId = localStorage.getItem("nextId");
+        if(nextId){
+          this.nextId = parseInt(nextId);
+        };
+
+
+
+        
+
+      }
+
+
+    }
+
+    Vue.createApp(app).mount("#primeiro");
+  </script>
+</body>
+
+</html>

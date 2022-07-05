@@ -1,0 +1,41 @@
+#primeiro{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.primeiro{
+    width: 600px;
+    margin:auto;
+    padding: 2rem;
+    border: 1px solid black;
+}
+
+.segundo{
+    width: 600px;
+    margin:auto;
+    padding: 2rem;
+    border: 1px solid black;
+}
+
+.button{
+    margin-top: 1rem;
+}
+
+.todoList{
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+
+}
+.todoList2{
+    display: none;
+}
+
+.todoList3{
+    display: flex; 
+    justify-content: space-between;
+}
+
+.pointer{
+    cursor: pointer;
+}

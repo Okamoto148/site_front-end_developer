@@ -1,0 +1,374 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;900&display=swap');
+
+body {
+  background: #f2f2f2;
+}
+
+header{
+  width: 1100px;
+  margin: auto;
+}
+.pagina{
+  text-align: center;
+  color: red;
+  opacity: 0.1;
+}
+
+.pagina:hover{
+  opacity: 1;
+  transition: 2s;
+}
+
+.cartao{
+  flex-grow: 1;
+  min-height: 250px;
+  min-width: 200px ;
+  background-color: white;
+  margin: 15px;
+  background-image: url('img/star\ wars4.jpg');
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+
+.conhecimento{
+  margin: 80px auto;
+  background-color: black;
+  width: 1100px;
+  height: 800px;
+  margin: auto;
+  margin-left: -30px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+
+
+.conhecimento__flip-container{
+  flex-grow: 1;
+  height: 270px;
+  width: 190px ;
+  background-color: white;
+  margin: 15px;
+  background-position: 100% 100%;
+  border: 1px solid black;
+  perspective: 1000px;
+  border-radius: 5px;
+}
+
+.conhecimento__flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 1.2s;
+  transform-style: preserve-3d;
+}
+
+.conhecimento__flip-container:hover .conhecimento__flipper {
+  transform: rotateY(180deg);
+}
+
+.conhecimento__front, .conhecimento__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.conhecimento__front div{
+  background-color: white; 
+  height: 100%; 
+  width: 100%; 
+  border-radius: 10px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-around; 
+  align-items: center;
+  padding: 15px;
+}
+
+.conhecimento__back div{
+  background-color: white; 
+  height: 100%; 
+  margin:auto; 
+  width: 100%;
+  border-radius: 10px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-around; 
+  align-items: center;
+  padding: 15px;
+  background-image: url('img/star\ wars4.jpg');
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+
+
+.conhecimento__back {
+  transform: rotateY(180deg);
+}
+
+
+.conhecimento__container{
+  width: 1100px; 
+  height: 550px; 
+  display: flex; 
+  flex-flow: row wrap; 
+  margin: auto; 
+
+}
+
+
+
+
+.container  {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  height: 700px;
+  width: 1200px;
+  background: #f2f2f2;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 20px 8px #d0d0d0;
+  
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  transform: translatey(-50%);
+  text-align: justify;
+  color: black;
+  padding: 40px;
+  font-family: 'Merriweather', serif;
+}
+
+h1 {
+  font-weight: 900;
+  text-align: center;
+}
+
+h3 {
+  font-weight: 300;
+}
+
+.flap {
+  width: 100%;
+  height: 100%;
+}
+
+.flap::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 50%;
+  background: url("img/star\ wars.png") white;
+  background-position: -60px;
+  background-repeat: no-repeat;
+  transition: 1s;
+}
+
+.flap::after {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 50%;
+  right: 0;
+  background: url("img/star\ wars.png") white;
+  background-position: -620px;
+  background-repeat: no-repeat;
+  transition: 1s;
+}
+
+
+
+.container{
+  margin-top: 90px;
+}
+
+.container:hover .flap::after {
+  transform: translatex(600px);
+}
+
+.container:hover .flap::before{
+  transform: translatex(-600px);
+}
+
+
+@media(max-width: 1200px){
+      .conhecimento{
+          width: 900px;
+          height: 1300px;
+      }
+
+      .container{
+        width: 900px;
+        height: 1300px;
+        margin-top: 300px;
+      }
+  
+
+    .conhecimento__container{
+      width: 800px; 
+      height: 1100px; 
+      display: flex; 
+      flex-flow: row wrap; 
+      margin: auto; 
+      padding-top: auto;
+    }
+
+    .flap::before {
+      background-position: -140px;
+    }
+    
+    .flap::after {
+      background-position: -580px;
+    }
+
+}
+
+@media(max-width: 1000px){
+  .conhecimento{
+      width: 700px;
+      height: 1400px;
+  }
+
+  .container{
+      width: 700px;
+      height: 1400px;
+
+  }
+
+
+.conhecimento__container{
+  width: 700px; 
+  height: 1400px; 
+  display: flex; 
+  flex-flow: row wrap; 
+  margin: auto; 
+  padding-top: 50px;
+}
+
+.flap::before {
+  background-position: -250px;
+}
+
+.flap::after {
+  background-position: -580px;
+}
+
+.header{
+  width: 300px;
+
+}
+
+}
+
+@media(max-width: 770px){
+  .conhecimento{
+      width: 500px;
+      height: 3300px;
+  }
+
+  .container{
+      width: 500px;
+      height: 3300px;
+      margin: 1400px auto;
+  }
+
+
+.conhecimento__container{
+  width: 400px; 
+  height: auto; 
+  display: flex; 
+  flex-flow: row wrap; 
+  margin: auto; 
+  padding-top: 50px;
+}
+
+.flap::before {
+  background-position: -350px;
+}
+
+.flap::after {
+  background-position: -590px;
+}
+
+.header{
+  width: 300px;
+  margin-left: -90px;
+}
+
+.container__img{
+  display:none;
+}
+
+.header2{
+  font-size: 12px;
+}
+
+.conhecimento__flip-container{
+
+  height: 270px;
+  width: 140px ;
+
+}
+}
+
+@media(max-width: 450px){
+  .conhecimento{
+      width: 300px;
+      height: 3300px;
+  }
+
+  .container{
+      width: 300px;
+      height: 3300px;
+      margin-top: 1400px;
+      margin-left: -40px;
+
+     
+  }
+
+
+.conhecimento__container{
+  width: 350px; 
+  height: auto; 
+  display: flex; 
+  flex-flow: row wrap; 
+  margin: auto; 
+  padding-top: 50px;
+}
+
+.flap::before {
+  background-position: -350px;
+}
+
+.flap::after {
+  background-position: -590px;
+}
+
+.header{
+  width: auto;
+  margin-left: -90px;
+}
+
+.container__img{
+  display:none;
+}
+
+.header2{
+  font-size: 12px;
+}
+
+.conhecimento__flip-container{
+  flex-shrink: 1;
+  height: 270px;
+  min-width: 140px ;
+
+}
+}
+

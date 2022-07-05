@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List CRUD</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type='text/babel'>
+    //Componente principal
+    const App = () => {
+      //Configuração para usar o React useState no CDN
+      const {useState, useEffect} = React;
+
+       //Essa constante recupera a listaTodo no localStorage
+       
+            //o useEffect usado deste jeito com o [] é chamado semelhante ao created;
+            useEffect(()=> {
+            const newNextId = localStorage.getItem("nextId2");
+            const listaTodo2 = localStorage.getItem("listaTodo");
+            if (listaTodo2) {
+                const newLista = JSON.parse(listaTodo2);
+                setListaTodo(newLista);
+              
+            }
+
+            if (newNextId){
+                setNextId(parseInt(newNextId));
+            };
+
+        },[]);
+
+      //Principais variáveis
+      var [listaTodo, setListaTodo] = useState([]);
+      const [edit,setEdit] = useState(true);
+      const [text, setText] = useState(null);
+      const [nextId2,setNextId] = useState(1);
+      const [todo,setTodo] = useState(null);
+
+      //Recebimento de dados dos componentes filhos
+      const childToParent = (childData) => {
+        addTodo(childData);
+      }
+
+      const childToParent2 = (childData) => {
+        setTodo(childData);
+      }
+
+      const childEdit= (childData) => {
+        setEdit(childData);
+      }
+
+      const index = (index) => {
+        removeTodo(index);
+      }
+
+
+      //Funções
+      //com isso o addTodo recebendo o valor joga no Todo List
+      function addTodo(text){
+        if(todo){
+          const index = listaTodo.findIndex((item) => item.id == todo.id);
+          setTodo(listaTodo[index]);
+          //iguala o valor para fazer o CRUD
+          todo.text = text;
+          setTodo(null);
+        }else{
+        //Pelo spread operator faz um objeto com o texto e o Id para fazer o CRUD
+        const newTodos = [...listaTodo, { text, id: nextId2 }];
+        setNextId(nextId2+1);
+        setListaTodo(newTodos); 
+        localStorage.setItem("nextId2", nextId2);            
+        }
+        setEdit(currentEdit=>!currentEdit);
+        const novaLista = JSON.stringify(listaTodo);
+        localStorage.setItem("listaTodo", novaLista);
+      }
+
+      //Recebe o index do componente filho e faz o splice para remover
+      const removeTodo = index => {
+        const newTodos = [...listaTodo];
+        newTodos.splice(index, 1);
+        setListaTodo(newTodos);
+        const novaLista = JSON.stringify(listaTodo);
+        localStorage.setItem("listaTodo", novaLista);
+      };
+
+      //JSX
+      return (
+        <div style={styles.main}>
+          <label style={styles.label} htmlFor="todo">
+            Todo List
+          </label>
+    
+          {edit&&(<TodoItem childToParent={childToParent} todo={todo} />)}
+          {!edit&&(<TodoList listaTodo={listaTodo} childEdit={childEdit} childToParent2={childToParent2} indexData={index}/>)}
+         </div>
+      )
+    };
+
+
+  //Componente TodoItem
+  const TodoItem = ({childToParent, todo}) => {
+    //Variáveis
+    const {useState, useEffect} = React
+    const [value, setValue] = useState("");
+    var [nextId2, setNextId] = useState(1);
+
+    //Hook para atualização do Input
+    useEffect(()=>{
+      if(todo){
+      setValue(todo.text);
+    }
+    },[todo]);
+
+    //Funções
+    //nesta constante joga-se o valor escrito pelo usuário no addTodo
+    const handleSubmit = e => {
+      e.preventDefault();
+      if (!value) return;
+      childToParent(value);
+      setValue("");
+    };
+
+    //JSX
+    return (
+    <div>
+      <form onSubmit={handleSubmit}> 
+        <div>
+        <input className="form-control form-control-lg" 
+        aria-label=".form-control-lg example" 
+        id="todo"
+
+            type="text"
+            value={value}
+            placeholder="Escreva sua tarefa"
+            onChange={e => setValue(e.currentTarget.value)}/>
+        </div>
+      <p><button style={styles.button} type="submit">Gravar</button></p>
+      </form>
+    </div>
+    )
+  }
+
+
+  //Componente TodoList
+  const TodoList = ({listaTodo, childToParent2, childEdit, indexData}) => {
+    //Configuração do useState
+    const {useState} = React;
+
+    //Funções
+    //Envio do todo para o componente principal
+    const editar = index => {
+      const todo = listaTodo[index];
+      childToParent2(todo);
+      childEdit(currentEdit=>!currentEdit);    
+    };
+         
+    //Configuração de voltar
+    function voltar(){
+      childEdit(currentEdit=>!currentEdit);
+    };
+
+    //Envio do index para o componente principal para a remoção com o splice
+    const removeTodo = index => {
+      indexData(index);
+    };
+         
+    //JSX   
+    return (
+      <main>
+        {listaTodo.map((i,index)=><p className="d-flex flex-row justify-content-between border-bottom pt-2" key={index}>{i.text}<span className="flex flex-row"><svg onClick={() => editar(index)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style={styles.pointer} className="bi bi-pencil" viewBox="0 0 16 16">
+          <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+          </svg><svg style={styles.pointer} onClick={() => removeTodo(index)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
+          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+          </svg></span></p>
+        )}
+         
+      <p><button style={styles.button} type="submit" onClick={voltar}>Voltar</button></p>
+      </main>
+      )
+  }
+
+
+
+
+  
+        ReactDOM.render(<App />, document.querySelector('#root'));
+      </script>
+
+<script src="style.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/@babel/standalone@7.10.3/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
+<script src='https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js'></script>
+</body>
+</html>
